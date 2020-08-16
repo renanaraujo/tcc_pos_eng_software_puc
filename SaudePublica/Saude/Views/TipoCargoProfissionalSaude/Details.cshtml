@@ -1,0 +1,23 @@
+﻿@model Saude.Models.Entity.Tipo_Cargo_Profissional_Saude
+
+@{
+    ViewData["Title"] = "Detalhes do tipo de cargo de profissional de saúde";
+}
+
+	<h1>Detalhes do tipo de cargo de profissional de saúde</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-info" aria-label="Editar" asp-action="Edit" asp-route-id="@Model.Id">Editar</a>
+    <a class="btn btn-info" aria-label="Voltar para a lista" asp-action="Index">Voltar para a lista</a>
+</div>

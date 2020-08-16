@@ -1,0 +1,56 @@
+﻿@using Saude.Models.Enums
+@model IEnumerable<Saude.Models.ViewModel.UsuarioViewModel>
+
+@{
+    ViewData["Title"] = "Lista de usuários";
+}
+
+<h1>Lista de usuários</h1>
+
+<p class="float-right">
+	<a class="btn btn-info" aria-label="Criar novo" asp-action="Create">Criar novo</a>
+	<a class="btn btn-info" aria-label="Criar novo Admin" asp-action="CreateAdmin">Criar novo Admin</a>
+</p>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Login)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Senha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Perfil_Acesso_Id)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Login)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Senha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Perfil_Acesso_Id)
+            </td>
+	        <td>
+		        <a class="btn btn-light" aria-label="Detalhes" asp-action="Details" asp-route-id="@item.Id">Detalhes</a>
+		        @if (item.Perfil_Acesso_Id == PerfilAcessoEnum.Admin)
+		        {
+			<a class="btn btn-info" aria-label="Detalhes" asp-action="EditAdmin" asp-route-id="@item.Id">Editar</a>
+		        }
+		        else
+		        {
+			        <a class="btn btn-info" aria-label="Editar" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+		        }
+		        <a class="btn btn-danger" aria-label="Remover" asp-action="Delete" asp-route-id="@item.Id">Remover</a>
+	        </td>
+        </tr>
+}
+    </tbody>
+</table>

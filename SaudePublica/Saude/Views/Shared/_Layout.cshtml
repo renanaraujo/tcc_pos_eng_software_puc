@@ -1,0 +1,91 @@
+﻿@using System.Security.Claims
+@using Saude.Models.Enums
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Saude</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index" aria-label="Home">Home</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <ul class="navbar-nav flex-grow-1">
+	                @if (((System.Security.Claims.ClaimsIdentity) User.Identity).HasClaim(ClaimTypes.Role, ((int) PerfilAcessoEnum.Admin).ToString()))
+	                {
+		                <li class="nav-item">
+			                <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Index" aria-label="Usuários">Usuários</a>
+		                </li>
+		                <li class="nav-item">
+			                <a class="nav-link text-dark" asp-area="" asp-controller="PerfilAcesso" asp-action="Index" aria-label="Perfis de acesso">Perfis de Acesso</a>
+		                </li>
+		                <li class="nav-item">
+			                <a class="nav-link text-dark" asp-area="" asp-controller="TipoExameMedico" asp-action="Index" aria-label="Tipos de exame">Tipos de Exame</a>
+		                </li>
+		                <li class="nav-item">
+			                <a class="nav-link text-dark" asp-area="" asp-controller="TipoProcedimentoMedico" asp-action="Index" aria-label="Tipos de procedimentos médicos">Tipos de Procedimentos Médicos</a>
+		                </li>
+		                <li class="nav-item">
+			                <a class="nav-link text-dark" asp-area="" asp-controller="TipoCargoProfissionalSaude" asp-action="Index" aria-label="Cargos de Prof. de Saúde">Cargos de Prof. de Saúde</a>
+		                </li>
+	                }
+		                
+	                @if (((ClaimsIdentity) User.Identity).HasClaim(ClaimTypes.Role, ((int) PerfilAcessoEnum.Admin).ToString())
+					   || ((ClaimsIdentity)User.Identity).HasClaim(ClaimTypes.Role, ((int)PerfilAcessoEnum.ProfissionalSaude).ToString()))
+					{
+		                <li class="nav-item">
+			                <a class="nav-link text-dark" asp-area="" asp-controller="CodigoInternacionalDoencas" asp-action="Index" aria-label="Código de doenças">Código de Doenças</a>
+		                </li>
+	                }
+                        
+	                @if (((ClaimsIdentity) User.Identity).HasClaim(ClaimTypes.Role, ((int) PerfilAcessoEnum.Paciente).ToString()))
+	                {
+		                <li class="nav-item">
+			                <a class="nav-link text-dark" asp-area="" asp-controller="Paciente" asp-action="AreaPaciente" aria-label="Área do paciente">Área do Paciente</a>
+		                </li>
+	                }
+                </ul>
+                </div>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+	                <ul class="navbar-nav">
+		                <li class="login-right">
+			                @if (User.Identity.IsAuthenticated)
+			                {
+				                <div>
+					                Olá @User.Identity.Name!
+				                </div>
+				                <a asp-controller="Login" asp-action="Logout" aria-label="Sair">Sair</a>
+			                }
+
+		                </li>
+	                </ul>
+					</div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2020 - Sistema de Saúde - Renan Pereira Araújo
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,26 @@
+﻿@model Saude.Models.Entity.Tipo_Cargo_Profissional_Saude
+
+@{
+    ViewData["Title"] = "Remover tipo de cargo de profissional de saúde";
+}
+
+	<h1>Remover tipo de cargo de profissional de saúde</h1>
+
+<h3>Tem certeza que deseja remover?</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" aria-label="Remover" value="Remover" class="btn btn-danger" /> 
+        <a class="btn btn-info" aria-label="Voltar para a lista" asp-action="Index">Voltar para a lista</a>
+    </form>
+</div>

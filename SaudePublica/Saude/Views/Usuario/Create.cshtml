@@ -1,0 +1,85 @@
+﻿@using Saude.Models.Enums
+@model Saude.Models.ViewModel.UsuarioViewModel
+@{
+	ViewData["Title"] = "Criar novo usuário";
+}
+
+<h1>Criar novo usuário</h1>
+
+<hr />
+
+<form asp-action="Create">
+	<div class="row">
+		<div class="col-md-12">
+			<div asp-validation-summary="All" class="text-danger"></div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4">
+			<div class="form-group">
+				<label aria-label="Nome" asp-for="Nome" class="control-label"></label>
+				<input aria-label="Nome" asp-for="Nome" class="form-control" />
+				<span asp-validation-for="Nome" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label aria-label="Login" asp-for="Login" class="control-label"></label>
+				<input aria-label="Login" asp-for="Login" class="form-control" />
+				<span asp-validation-for="Login" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label aria-label="Senha" asp-for="Senha" class="control-label"></label>
+				<input aria-label="Senha" asp-for="Senha" type="password" class="form-control" />
+				<span asp-validation-for="Senha" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label aria-label="Email" asp-for="Email" class="control-label"></label>
+				<input aria-label="Email" asp-for="Email" class="form-control" />
+				<span asp-validation-for="Email" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label aria-label="Cpf" asp-for="Cpf" class="control-label"></label>
+				<input aria-label="Cpf" asp-for="Cpf" class="form-control" />
+				<span asp-validation-for="Cpf" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label aria-label="DataNascimento" asp-for="DataNascimento" class="control-label"></label>
+				<input aria-label="DataNascimento" asp-for="DataNascimento" class="form-control" />
+				<span asp-validation-for="DataNascimento" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label aria-label="Perfil de acesso" asp-for="Perfil_Acesso_Id" class="control-label"></label>
+				<select aria-label="Perfil de acesso" asp-for="Perfil_Acesso_Id" asp-items="@ViewBag.PerfilAcessoList" class="form-control">
+					<option value="">Perfil de acesso</option>
+				</select>
+				<span asp-validation-for="Perfil_Acesso_Id" class="text-danger"></span>
+			</div>
+			<div id="cargo-profissional-saude-form-group" class="form-group">
+				<label aria-label="Tipo de cargo de profissional de saúde" asp-for="Tipo_Cargo_Profissional_Saude" class="control-label"></label>
+				<select aria-label="Tipo de cargo de profissional de saúde" asp-for="Tipo_Cargo_Profissional_Saude" asp-items="@ViewBag.TipoCargoProfissionalSaudeList" class="form-control">
+					<option value="">Tipo de cargo</option>
+				</select>
+				<span asp-validation-for="Tipo_Cargo_Profissional_Saude" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<input type="submit" aria-label="Criar" value="Criar" class="btn btn-primary" />
+			</div>
+		</div>
+	</div>
+</form>
+
+@section Scripts {
+	@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+	<script>
+		$("#cargo-profissional-saude-form-group").hide();
+		$("#Perfil_Acesso_Id").change(function() {
+			if ($(this).val() == "@((int)PerfilAcessoEnum.ProfissionalSaude)") {
+				$("#cargo-profissional-saude-form-group").show();
+			} else {
+				$("#cargo-profissional-saude-form-group").hide();
+			}
+		});
+		$("#Perfil_Acesso_Id").change();
+	</script>
+
+}

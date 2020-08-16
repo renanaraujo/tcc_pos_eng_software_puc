@@ -1,0 +1,22 @@
+﻿@model Saude.Models.Entity.Perfil_Acesso
+
+@{
+    ViewData["Title"] = "Detalhes do perfil de acesso";
+}
+
+	<h1>Detalhes do perfil de acesso</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+    </dl>
+</div>
+<div>
+	<a class="btn btn-info" aria-label="Voltar para a lista" asp-action="Index">Voltar para a lista</a>
+</div>

@@ -1,0 +1,96 @@
+﻿@using Saude.Models.ViewModel
+@{
+	ViewData["Title"] = "Home";
+}
+
+<div class="text-center bem-vindo">
+	<h1 class="display-4">Bem vindo ao Sistema de Saúde!</h1>
+	<p>Aluno: Renan Pereira Araújo</p>
+</div>
+
+<hr />
+
+@if (ViewBag.Message != null)
+{
+	<div class="alert alert-info">@ViewBag.Message</div>
+}
+
+
+<div class="container login-container">
+
+	@if (User.Identity.IsAuthenticated)
+	{
+		<div class="row">
+			<div class="col-md-12">
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et lobortis neque, sed facilisis dolor. Donec vitae arcu augue. Proin ultrices aliquet quam vitae aliquam. Quisque nunc ex, pharetra eget vestibulum at, pretium eget arcu. Etiam eros metus, tempor sit amet urna eget, suscipit ullamcorper eros. Suspendisse ac ullamcorper turpis, vitae posuere turpis. Mauris vitae interdum dolor.
+
+				In libero leo, maximus a fringilla sed, sagittis ac risus. Duis eleifend dolor vel venenatis sagittis. Duis aliquet, velit sed mattis aliquam, turpis neque semper nunc, quis volutpat dui lectus id metus. Aenean molestie dui sed erat iaculis, in varius eros bibendum. Maecenas interdum, enim et placerat molestie, odio magna ultricies enim, vitae volutpat lorem enim in tortor. Suspendisse sed dapibus lorem, eu scelerisque dui. Aliquam dictum justo nec risus faucibus cursus. Aenean sapien nisi, tempus ac luctus non, pretium ut ex. Nulla placerat nisl turpis, in vestibulum neque tempor sit amet. Donec cursus erat vel pretium tempor.
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="album py-5 bg-light">
+				<div class="container">
+
+					<div class="row">
+						<div class="col-md-4">
+							<div class="card mb-4 shadow-sm">
+								<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: "><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></svg>
+								<div class="card-body">
+									<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="card mb-4 shadow-sm">
+								<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: "><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></svg>
+								<div class="card-body">
+									<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="card mb-4 shadow-sm">
+								<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: "><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></svg>
+								<div class="card-body">
+									<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	}
+	else
+	{
+		<div class="row">
+			<div class="col-md-6 login-form-1 left-login">
+				<h3>Primeiro acesso? Criar login</h3>
+				<form asp-action="Register" asp-controller="Usuario">
+					<div class="form-group">
+						<input aria-label="Nome" type="text" name="@nameof(UsuarioViewModel.Nome)" class="form-control" placeholder="Nome" value="" maxlength="100" />
+					</div>
+					<div class="form-group">
+						<input aria-label="Login" name="@nameof(UsuarioViewModel.Login)" class="form-control" placeholder="Login" value="" maxlength="45" />
+					</div>
+					<input type="submit" aria-label="Criar login" class="btn btn-success" value="Criar login" />
+				</form>
+			</div>
+			<div class="col-md-6 login-form-2 right-login">
+				<h3>Já possuí conta? Realizar login</h3>
+				<form asp-action="Login" asp-controller="Login">
+					<div class="form-group">
+						<input type="text" aria-label="Login" name="@nameof(UsuarioViewModel.Login)" class="form-control" placeholder="Login" value="" maxlength="45"/>
+					</div>
+					<div class="form-group">
+						<input type="password" aria-label="Senha" name="@nameof(UsuarioViewModel.Senha)" class="form-control" placeholder="Senha" value="" maxlength="45" />
+					</div>
+					<div class="form-group">
+						<input type="submit" aria-label="Login" class="btn btn-success" value="Login" />
+					</div>
+				</form>
+			</div>
+		</div>
+	}
+</div>
