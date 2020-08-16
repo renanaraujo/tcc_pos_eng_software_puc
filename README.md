@@ -6,7 +6,7 @@
 
 - Após restore do banco, verifique a connection string no arquivo appsettings.json que está localizado dentro da pasta do projeto.
 
-- Foram adicionadas imagens dos diagramas ER pra facilitar a visualização ao invés de manter apenas na documentação. Essas imagens, bem como os arquivos originais do Dia e MySQLWorkbench estão na raiz do repositório.
+- Foram adicionadas imagens dos diagramas ER pra facilitar a visualização ao invés de manter apenas na documentação. Essas imagens estão na raiz do repositório.
 
 - Aplicação testada em máquina Windows com XAMPP versão 3.2.2.
 
